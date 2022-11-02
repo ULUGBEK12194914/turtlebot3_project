@@ -55,10 +55,15 @@ ulugbekmirzabakhromov@ubuntu:~$ sudo apt install ros-foxy-turtlebot3
 ulugbekmirzabakhromov@ubuntu:~$ echo 'export ROS_DOMAIN_ID=30 #TURTLEBOT3' >> ~/.bashrc
 ulugbekmirzabakhromov@ubuntu:~$ source ~/.bashrc
 ```
-#SBC Setup
-## Prepare microSC Card and Reader
-## Download TurtleBot3 SBC Image
-![]()
+# SBC Setup
+#Prepare microSC Card and Reader
+
+#Download TurtleBot3 SBC Image
+https://www.robotis.com/service/download.php?no=2064
+
+#Burn the image file with the Rapsberry Pi Imager
+https://www.raspberrypi.org/software/
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.35.09.png?raw=true)
 #Resize the Partition
 ```bash
 ulugbekmirzabakhromov@ubuntu:~$ sudo apt install gparted
@@ -66,16 +71,37 @@ ulugbekmirzabakhromov@ubuntu:~$ sudo apt install gparted
 #Open GParted and resize the Partition
 ulugbekmirzabakhromov@ubuntu:~$ gparted
 ```
-![]()
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.32.09.png)
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.33.40.png)
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.34.15.png)
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.34.27.png)
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.34.47.png)
+# Configure the WIFI settings
 ```bash
-#Configure the WIFI settings
 ----------------------------
 ubuntu@ubuntu:~$ cd /media/ubuntu/writable/etc/netplan/
+
+#Edit the yaml file with a superuser permission 'sudo'. When the editor is opened, replace WIFI_SSID and WIFI_PASSWORD with your SSID and password
+----------------------------------
 ubuntu@ubuntu:/media/ubuntu/writable/etc/netplan$ sudo nano 50-cloud-init. yaml
 ```
-![]()
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.43.53.png)
+#Turtlebot configuration
 ```bash
-#Boot up the Raspberry Pi(Connect the Raspberry Pi to the Monitor)
+#Boot up the Raspberry Pi(Connect the Raspberry Pi using micro hdmi to the Monitor)
 #Insert the microSD card
 #Login with ID 'ubuntu' and Password 'turtlebot'
-
+```
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.36.52.png)
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.36.38.png)
+# ROS2 Network Configuration
+#The default ROS DOMAIN ID for Turtlebot3 is set to 30 in the .bashrc file.Please modify the ID.
+```bash
+#Add the following code inside the bashrc file(both in computer and turtlebot)
+ROS_DOMAIN_ID=30 #TURTLEBOT3
+```
+#In your terminal type the command
+```bash
+ubuntu@ubuntu:~$ ssh 'ip_address'
+```
+![](https://github.com/ULUGBEK12194914/turtlebot3_project/blob/main/images/Screenshot%202022-11-02%20at%2015.36.27.png)
